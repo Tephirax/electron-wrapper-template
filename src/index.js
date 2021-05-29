@@ -44,3 +44,12 @@ app.on('activate', () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
+
+// RH 29-May-2021 - Open http links in default browser
+let shell = require('electron').shell
+document.addEventListener('click', function (event) {
+  if (event.target.tagName === 'A' && event.target.href.startsWith('http')) {
+    event.preventDefault()
+    shell.openExternal(event.target.href)
+  }
+})
