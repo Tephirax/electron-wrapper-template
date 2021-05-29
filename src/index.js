@@ -19,16 +19,6 @@ const createWindow = () => {
   // and load the index.html of the app.
   mainWindow.loadFile(path.join(__dirname, 'index.html'));
   
-  window.webContents.on('new-window', function(e, url) {
-	  // make sure local urls stay in electron perimeter
-	  if('file://' === url.substr(0, 'file://'.length)) {
-		return;
-	  }
-
-	  // and open every other protocols on the browser      
-	  e.preventDefault();
-	  shell.openExternal(url);
-	});
 };
 
 // This method will be called when Electron has finished
